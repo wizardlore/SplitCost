@@ -202,7 +202,7 @@ public class SplitCost {
 
     // the sum of the fractionsOfTotal array must equal 1 aka 100%
     if (FractionSum.compareTo(one) != 0.0) {
-      System.out.println("Sum of Fractions do not equal 1.0: " + FractionSum);
+      //System.out.println("Sum of Fractions do not equal 1.0: " + FractionSum);
       return null;
     }
 
@@ -210,13 +210,12 @@ public class SplitCost {
     BigDecimal temp = BigDecimal.valueOf(0.0);
     for (int i = 0; i < fractionsOfTotal.length; i++) {
       amounts[i] = cost.multiply(fractionsOfTotal[i]).setScale(2, RoundingMode.HALF_UP);
-      //amounts[i] = cost.multiply(fractionsOfTotal[i]);
       temp = temp.add(amounts[i]);
     }
     BigDecimal diff = cost.subtract(temp);
     if (diff.compareTo(BigDecimal.valueOf(0.0)) != 0.0) {
       amounts[amounts.length - 1] = amounts[amounts.length - 1].add(diff);
-      System.out.println("Leftover diffence amount was applied to last split: " + diff.doubleValue());
+      //System.out.println("Leftover diffence amount was applied to last split: " + diff.doubleValue());
     }
     return amounts;
   }
@@ -228,7 +227,7 @@ public class SplitCost {
     System.out.println("\r\n  java -jar SplitCost.jar 101.01 .3333 .3333 .3334");
     System.out.println("\r\n  -s Output split amounts only:");
     System.out.println("\r\n    java -jar SplitCost.jar -s 101.01 .5 .25 .10 .10 .05");
-    System.out.println("\r\n  -h Display this help message:");
+    System.out.println("\r\n  -h Output this help message:");
     System.out.println("\r\n    java -jar SplitCost.jar -h");
     System.out.println("\r\nExecute with no arguments to run interactively:");
     System.out.println("\r\n  java -jar SplitCost.jar\r\n");
